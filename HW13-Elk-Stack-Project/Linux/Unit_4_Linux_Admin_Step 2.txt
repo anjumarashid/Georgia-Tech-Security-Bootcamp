@@ -1,0 +1,17 @@
+
+
+sysadmin@UbuntuDesktop:/etc$ sudo adduser --system --no-create-home joe
+
+sysadmin@UbuntuDesktop:/etc$ sudo adduser --system --no-create-home amy
+
+sysadmin@UbuntuDesktop:/etc$ sudo adduser --system --no-create-home sam
+
+sysadmin@UbuntuDesktop:/etc$ sudo adduser --system --no-create-home sara
+
+sysadmin@UbuntuDesktop:/etc$ sudo adduser --system --no-create-home admin
+
+sudo usermod -a -G sudo admin
+OR
+sysadmin@UbuntuDesktop:/etc$ sudo visudo
+admin ALL=NOPASSWD: /usr/sbin/admin
+ sudo -lU admin

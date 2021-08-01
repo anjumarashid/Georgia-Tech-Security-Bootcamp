@@ -1,0 +1,5 @@
+sudo apt install chkrootkit
+sudo chkrootkit
+sudo chkrootkit -x 
+man chkrootkit
+chkrootkit -h

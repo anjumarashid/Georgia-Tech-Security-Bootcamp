@@ -1,0 +1,11 @@
+sudo apt install lynis
+man lynis
+sudo lynis audit system
+sudo lynis show details CONT-8104
+2021-05-30 22:53:57 Hardening: assigned partial number of hardening points (3 of 4). Currently having 155 points (out of 285)
+
+sudo lynis show details KRNL-6000
+docker info
+
+Turn off printer and services
+Install newer version

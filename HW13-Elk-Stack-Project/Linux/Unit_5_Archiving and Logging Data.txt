@@ -1,0 +1,88 @@
+Archiving and Logging Data
+Step 1
+1.1	– Command to extract the TarDocs.tar archive to the current directory:
+	sudo tar xvvf TarDocs.tar 
+1.2	- Command to create the Javaless_Doc.tar archive from the TarDocs/ directory, while excluding the TarDocs/Documents/Java directory:
+	sudo tar cvvzf Javaless_Docs.tar --exclude=TarDocs/Documents/Java TarDocs/ 
+1.3 - Command to ensure Java/ is not in the new Javaless_Docs.tar archive
+	tar tvvf Javaless_Docs.tar | grep Java
+
+Bonus
+Command to create an incremental archive called logs_backup_tar.gz with only changed files to snapshot.file for the /var/log directory	
+	sudo tar cvzWf logs_backup.tar.gz --listed-incremental=snapshot.file_backup.snar --level=0 /var/log
+	sudo tar cvzWf logs_backup.tar.gz --listed-incremental=snapshot.file_backup.snar /var/log
+	sudo tar tvvf logs_backup.tar.gz --incremental
+	
+	
+Why wouldn't you use the options -x and -c at the same time with tar?
+	Only one operation is allowed in an argument. c will create and x will extract archive
+	
+Step 2
+	crontab -e
+	0 6 * * 3  tar -C / -czf /auth_backup.tgz  /var/log/auth.log
+	sudo ls -l /var/spool/cron/crontabs 
+	sudo tar -C / -czf /auth_backup.tgz var/log/auth.log
+
+Step 3
+mkdir -p ~/backups/{freemem,diskuse,openlist,freedisk}
+
+nano system.sh
+free -h > ~/backups/freemem/free_mem.txt 
+du -h > ~/backups/diskuse/disk_usage.txt
+lsof > ~/backups/openlist/open_list.txt
+df -h > ~/backups/freedisk/free_disk.txt
+
+chmod +x system.sh
+sudo ./system.sh
+cat ~/backups/freedisk/free_disk.txt
+cat ~/backups/freemem/free_mem.txt
+
+Bonus
+sudo cp system.sh /etc/cron.weekly
+
+Step 4
+1.1 
+/var/log/auth.log {
+weekly
+rotate 7
+notifempty
+delaycompress
+missingok
+endofscript
+}
+
+Step 4 Bonus
+1- Command to verify auditd is active
+	systemctl status auditd
+2 - Command to set number of retained logs and maximum log file size
+	num_logs = 7
+	max_log_file = 35
+3 - Edits made to the rules file below
+	-w /etc/shadow -p wra -k hashpass_audit
+	-w /etc/passwd -p wra -k userpass_audit
+	-w /var/log/auth.log -p wra -k authlog_audit
+			
+4 - Command to restart auditd
+	sudo systemctl restart auditd
+5 - Command to list all auditd rules
+	sudo auditctl -l
+6 - Commands to produce audit report
+	sudo aureport -au
+	sudo aureport -m
+7 - Add attacker
+	su sysadmin
+	sudo useradd attacker
+8 -	Create rule to watch for /var/log/cron
+	sudo nano /etc/audit/rules.d/audit.rules
+	-w /var/log/cron -p -K cron
+9 - Perform listing to reveal changes to auditd
+	sudo auditctl -l
+	sudo aureport -m 
+	
+
+
+ 
+
+
+
+

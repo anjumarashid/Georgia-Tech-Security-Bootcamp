@@ -1,0 +1,17 @@
+Step 1, 1.1 View Permission
+ls -l folder-name 
+ls -l /etc/shadow
+Change permission 
+sudo chmod permission-level folder-name
+sudo chmod 644 /etc/shadow
+sysadmin@UbuntuDesktop:/etc$ ls -l /etc/shadow
+sudo chmod 600 /etc/shadow
+sysadmin@UbuntuDesktop:/etc$ ls -l /etc/gshadow
+sudo chmod 600 /etc/gshadow
+sysadmin@UbuntuDesktop:/etc$ ls -l /etc/group
+sudo chmod 644 /etc/gshadow
+sysadmin@UbuntuDesktop:/etc$ ls -l /etc/passwd
+
+
+
+

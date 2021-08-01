@@ -1,0 +1,10 @@
+sudo addgroup /home/engineers
+
+sudo usermod -a -G engineers sam
+sudo usermod -a -G engineers joe
+sudo usermod -a -G engineers amy
+sudo usermod -a -G engineers sara
+cd /
+mkdir engineers
+sudo chown :engineers /home/engineers
+
