@@ -111,33 +111,33 @@ SSH into the control node and follow the steps below:
  _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
 
- sudo docker start elk OR sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk:761
+ - sudo docker start elk OR sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk:761
  
- docker run hello-world
+ - docker run hello-world
  
- nano /etc/ansible/hosts
- [webservers]
- 10.0.0.4 ansible_python_interpreter=/usr/bin/python3
- 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
- 10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+ - nano /etc/ansible/hosts
+    [webservers]
+    10.0.0.4 ansible_python_interpreter=/usr/bin/python3
+    10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+    10.0.0.6 ansible_python_interpreter=/usr/bin/python3
 
- [elk]
- 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+    [elk]
+    10.1.0.4 ansible_python_interpreter=/usr/bin/python3
  
- curl http://localhost:5601/app/kibana
+- curl http://localhost:5601/app/kibana
  
- curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml
+- curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/filebeat-config.yml
  
- nano /etc/ansible/filebeat-config.yml
+- nano /etc/ansible/filebeat-config.yml
  
- nano filebeat-playbook.yml
+- nano filebeat-playbook.yml
  
- dpkg -i filebeat-7.4.0-amd64.deb
+- dpkg -i filebeat-7.4.0-amd64.deb
  
- mv /etc/ansible/files/filebeat-config.yml /etc/filebeat/filebeat.yml
+- mv /etc/ansible/files/filebeat-config.yml /etc/filebeat/filebeat.yml
  
- filebeat modules enable system
+- filebeat modules enable system
  
- filebeat setup
+- filebeat setup
  
- service filebeat start
+- service filebeat start
