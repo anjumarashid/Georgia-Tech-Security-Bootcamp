@@ -3,11 +3,11 @@
 
 The files in this repository were used to configure the network depicted in \Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Images\Elk_Deployment.png.
 
-Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\install-elk.yml
+- Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\install-elk.yml
 
-Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\filebeat-playbook.yml
+- Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\filebeat-playbook.yml
 
-Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\metricbeat-playbook.yml
+- Georgia-Tech-Security-Bootcamp\HW13-Elk-Stack-Project\Ansible\metricbeat-playbook.yml
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured \Images\Elk_Deployment.png. Alternatively, select portions of the filebeat-playbook.yml file may be used to install only certain pieces of it, such as Filebeat.
 
